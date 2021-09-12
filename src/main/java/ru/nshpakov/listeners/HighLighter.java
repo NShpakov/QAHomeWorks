@@ -1,8 +1,7 @@
-package listeners;
+package ru.nshpakov.listeners;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.events.WebDriverEventListener;
-
 import static java.lang.Thread.sleep;
 
 public class HighLighter implements WebDriverEventListener {
@@ -69,7 +68,7 @@ public class HighLighter implements WebDriverEventListener {
     @Override
     public void beforeFindBy(By by, WebElement webElement, WebDriver webDriver) {
         try {
-            highlight(webDriver, webElement, "orange");
+            highlight(webDriver, webElement, "red");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -155,11 +154,11 @@ public class HighLighter implements WebDriverEventListener {
         if (element != null && element.getAttribute("__selenideHighlighting") == null) {
             for (int i = 1; i < 4; i++) {
                 transform(driver, element, color, i);
-                sleep(75);
+                sleep(100);
             }
             for (int i = 4; i > 0; i--) {
                 transform(driver, element, color, i);
-                sleep(75);
+                sleep(100);
             }
         }
         return element;
