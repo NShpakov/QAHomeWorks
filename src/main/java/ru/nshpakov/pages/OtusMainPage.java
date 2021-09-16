@@ -12,13 +12,14 @@ import org.openqa.selenium.support.FindBy;
 import java.util.*;
 
 public class OtusMainPage extends BasePage {
-    private String POPULAR_COURSES_DATES_LOCATOR = ".//div[@class=\"subtitle-new\" and text()='Популярные курсы']/following::div[@class='lessons'][1]/a/div/div[@class='lessons__new-item-bottom']/div[@class='lessons__new-item-start']";
-    private String POPULAR_COURSES_NAMES_LOCATOR = "./ancestor::div[@class='lessons__new-item-container']/div[@class='lessons__new-item-title lessons__new-item-title_with-bg js-ellipse']";
+    private final static String POPULAR_COURSES_DATES_LOCATOR = ".//div[@class=\"subtitle-new\" and text()='Популярные курсы']/following::div[@class='lessons'][1]/a/div/div[@class='lessons__new-item-bottom']/div[@class='lessons__new-item-start']";
+    private final static String POPULAR_COURSES_NAMES_LOCATOR = "./ancestor::div[@class='lessons__new-item-container']/div[@class='lessons__new-item-title lessons__new-item-title_with-bg js-ellipse']";
+    private static final String COURSE_BUTTON = "(.//div[@class='header2-menu__item-wrapper']/p[text()=\"Курсы\"])[1]";
     private Actions actions = new Actions(webDriver);
-    @FindBy(xpath = "(.//div[@class='header2-menu__item-wrapper']/p[text()=\"Курсы\"])[1]")
+    @FindBy(xpath = COURSE_BUTTON)
     WebElement coursesButton;
-    Map<String, Date> courseData = new HashMap<>();
-    CustomWebDriverWait customWebDriverWait = new CustomWebDriverWait(webDriver, 5L);
+    private Map<String, Date> courseData = new HashMap<>();
+    private CustomWebDriverWait customWebDriverWait = new CustomWebDriverWait(webDriver, 5L);
 
     public OtusMainPage(WebDriver webDriver) {
         super(webDriver);
@@ -33,7 +34,7 @@ public class OtusMainPage extends BasePage {
                 .perform();
     }
 
-    public void clickCourseButton() {
+    public void clickCourseButton() { customWebDriverWait.waitLoadElement(coursesButton).getAttribute("__selenideHighlighting");
         customWebDriverWait.waitLoadElement(coursesButton).click();
     }
 
@@ -44,12 +45,14 @@ public class OtusMainPage extends BasePage {
                 .stream()
                 .filter(k -> k.getKey().equals(courseName))
                 .map(Map.Entry::getKey)
-                //.forEach(System.out::println);
                 .findAny().get();
     }
 
     private Map<String, Date> createMapCourseNameCourseDataStart(String lstCourseDateLocator, String lstCourseNameLocator) {
-        List<WebElement> listCourseNames = customWebDriverWait.waitLoadElements(webDriver.findElements(By.xpath(lstCourseDateLocator)));
+        List<WebElement> listCourseNames = new ArrayList<>();
+        if(customWebDriverWait.waitLoadElements(webDriver.findElements(By.xpath(lstCourseDateLocator)))){
+          listCourseNames = webDriver.findElements(By.xpath(lstCourseDateLocator));
+        }
         listCourseNames.forEach(webElement -> {
             Date startDate = DataParser.convertStringDateToCalendar(webElement.getText());
             String courseName = webElement.findElement(By.xpath(lstCourseNameLocator)).getText();

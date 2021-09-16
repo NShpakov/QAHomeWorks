@@ -3,6 +3,7 @@ package ru.nshpakov.waits;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.List;
 
 public class CustomWebDriverWait {
@@ -14,10 +15,13 @@ public class CustomWebDriverWait {
         this.timeOutInSeconds = timeOutInSeconds;
     }
 
-    public List<WebElement> waitLoadElements(List<WebElement> lstElemnts) {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, timeOutInSeconds);
-        webDriverWait.until(CustomWaitByConditions.waitLoadingElements(lstElemnts));
-        return lstElemnts;
+    //    public List<WebElement> waitLoadElements(List<WebElement> lstElemnts) {
+//        WebDriverWait webDriverWait = new WebDriverWait(driver, timeOutInSeconds);
+//        webDriverWait.until(CustomWaitByConditions.waitLoadingElements(lstElemnts));
+//        return lstElemnts ;
+//    }
+    public Boolean waitLoadElements(List<WebElement> lstElemnts) {
+        return new WebDriverWait(driver, timeOutInSeconds).until(CustomWaitByConditions.waitLoadingElements(lstElemnts));
     }
 
     public WebElement waitLoadElement(WebElement element) {

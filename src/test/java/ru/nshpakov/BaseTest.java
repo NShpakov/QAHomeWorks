@@ -1,6 +1,6 @@
 package ru.nshpakov;
 
-import ru.nshpakov.config.Constants;
+import ru.nshpakov.config.ConfigReader;
 import ru.nshpakov.driver.DriverFactory;
 import ru.nshpakov.driver.DriverManager;
 import ru.nshpakov.listeners.HighLighter;
@@ -8,14 +8,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.*;
 
+import java.util.Locale;
+
 public abstract class BaseTest {
-    protected static DriverManager driverManager;
+    private  DriverManager driverManager;
     private EventFiringWebDriver driver;
 
     @BeforeMethod
     protected void setUp() {
-        initDriverManager(Constants.getBaseBrowser());
-        driverManager.getDriver().navigate().to(Constants.getBaseUrl());
+        initDriverManager(ConfigReader.getStringKeyProperty("browser").toUpperCase(Locale.ROOT));
+        driverManager.getDriver().navigate().to(ConfigReader.getStringKeyProperty("url"));
     }
 
     @AfterMethod
