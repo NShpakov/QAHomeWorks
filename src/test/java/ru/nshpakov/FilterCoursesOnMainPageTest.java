@@ -24,8 +24,8 @@ public class FilterCoursesOnMainPageTest extends BaseTest {
 
     @Test(description = "Фильтрация курсов по имени", enabled = true)
     public void getCourseName() {
-        String actualSpecialization = otusMainPage.filterCourseNameFromMainPage("Project Manager. Advanced");
-        String expectedSpecialization = "Project Manager. Advanced";
+        String actualSpecialization = otusMainPage.filterCourseNameFromMainPage("Highload Architect");
+        String expectedSpecialization = "Highload Architect";
         assertEquals(expectedSpecialization, actualSpecialization);
     }
 
@@ -34,7 +34,7 @@ public class FilterCoursesOnMainPageTest extends BaseTest {
         Date lastDate = otusMainPage.getLastDate();
         String actualLastDate = lastDate.toString();
         String expectedLastDate = "Thu Sep 30 00:00:00 MSK 2021";
-        String expectedCourseName = "Project Manager. Advanced";
+        String expectedCourseName = "Специализация Android-разработчик";
         String actualCourseName = otusMainPage.findCourseNameByDate(lastDate);
         assertEquals(expectedLastDate, actualLastDate);
         assertEquals(expectedCourseName, actualCourseName);
@@ -45,8 +45,8 @@ public class FilterCoursesOnMainPageTest extends BaseTest {
         Date firstDate = otusMainPage.getFirstDate();
         String actualFirstDate = firstDate.toString();
         String actualCourseName = otusMainPage.findCourseNameByDate(firstDate);
-        String expectedFirstDate = "Wed Sep 22 00:00:00 MSK 2021";
-        String expectedCourseName = "Разработчик онлайн-обучения";
+        String expectedFirstDate = "Tue Sep 28 00:00:00 MSK 2021";
+        String expectedCourseName = "JavaScript Developer. Professional";
         assertEquals(expectedFirstDate, actualFirstDate);
         assertEquals(expectedCourseName, actualCourseName);
     }
