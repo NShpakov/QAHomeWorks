@@ -1,10 +1,12 @@
-package ru.nshpakov.driver;
+package ru.nshpakov.cucumber.steps.driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.opera.OperaOptions;
+
 import static io.github.bonigarcia.wdm.config.DriverManagerType.OPERA;
+
 public class OperaDriverManager extends DriverManager {
     @Override
     protected WebDriver createDriver() {

@@ -1,17 +1,17 @@
-package ru.nshpakov;
+package ru.nshpakov.cucumber.steps.test;
 
-import ru.nshpakov.config.ConfigReader;
-import ru.nshpakov.driver.DriverFactory;
-import ru.nshpakov.driver.DriverManager;
-import ru.nshpakov.listeners.HighLighter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.*;
+import ru.nshpakov.cucumber.steps.config.ConfigReader;
+import ru.nshpakov.cucumber.steps.driver.DriverFactory;
+import ru.nshpakov.cucumber.steps.driver.DriverManager;
+import ru.nshpakov.cucumber.steps.listeners.HighLighter;
 
 import java.util.Locale;
 
 public abstract class BaseTest {
-    private  DriverManager driverManager;
+    private DriverManager driverManager;
     private EventFiringWebDriver driver;
 
     @BeforeMethod

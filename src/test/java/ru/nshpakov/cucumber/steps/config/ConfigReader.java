@@ -1,4 +1,4 @@
-package ru.nshpakov.config;
+package ru.nshpakov.cucumber.steps.config;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

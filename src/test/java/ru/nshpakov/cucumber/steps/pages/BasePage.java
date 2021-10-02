@@ -1,4 +1,4 @@
-package ru.nshpakov.pages;
+package ru.nshpakov.cucumber.steps.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;

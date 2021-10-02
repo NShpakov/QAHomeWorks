@@ -1,10 +1,12 @@
-package ru.nshpakov.utils;
+package ru.nshpakov.cucumber.steps.utils;
 
-import ru.nshpakov.config.ConfigReader;
+import ru.nshpakov.cucumber.steps.config.ConfigReader;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class DataParser {
     private static final String INPUT_FORMAT_DATE = ConfigReader.getStringKeyProperty("date_format");

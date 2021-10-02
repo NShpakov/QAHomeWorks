@@ -1,7 +1,8 @@
-package ru.nshpakov.listeners;
+package ru.nshpakov.cucumber.steps.listeners;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.events.WebDriverEventListener;
+
 import static java.lang.Thread.sleep;
 
 public class HighLighter implements WebDriverEventListener {

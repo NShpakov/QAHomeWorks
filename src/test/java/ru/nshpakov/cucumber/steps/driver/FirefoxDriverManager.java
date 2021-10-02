@@ -1,4 +1,4 @@
-package ru.nshpakov.driver;
+package ru.nshpakov.cucumber.steps.driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

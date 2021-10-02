@@ -1,4 +1,4 @@
-package ru.nshpakov.driver;
+package ru.nshpakov.cucumber.steps.driver;
 
 import org.openqa.selenium.WebDriver;
 

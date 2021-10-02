@@ -1,4 +1,4 @@
-package ru.nshpakov.waits;
+package ru.nshpakov.cucumber.steps.waits;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

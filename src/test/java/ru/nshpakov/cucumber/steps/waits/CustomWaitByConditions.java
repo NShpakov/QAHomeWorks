@@ -1,9 +1,10 @@
-package ru.nshpakov.waits;
+package ru.nshpakov.cucumber.steps.waits;
 
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+
 import java.util.List;
 
 class CustomWaitByConditions {
