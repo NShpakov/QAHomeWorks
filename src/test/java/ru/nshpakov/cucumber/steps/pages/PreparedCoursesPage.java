@@ -1,10 +1,8 @@
 package ru.nshpakov.cucumber.steps.pages;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.nshpakov.cucumber.steps.waits.CustomWebDriverWait;
-
 import java.util.*;
 
 public class PreparedCoursesPage extends BasePage {

@@ -1,8 +1,9 @@
 package ru.nshpakov.cucumber.steps.test;
 
+import org.junit.After;
+import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-import org.testng.annotations.*;
 import ru.nshpakov.cucumber.steps.config.ConfigReader;
 import ru.nshpakov.cucumber.steps.driver.DriverFactory;
 import ru.nshpakov.cucumber.steps.driver.DriverManager;
@@ -14,13 +15,13 @@ public abstract class BaseTest {
     private DriverManager driverManager;
     private EventFiringWebDriver driver;
 
-    @BeforeMethod
+    @Before
     protected void setUp() {
         initDriverManager(ConfigReader.getStringKeyProperty("browser").toUpperCase(Locale.ROOT));
         driverManager.getDriver().navigate().to(ConfigReader.getStringKeyProperty("url"));
     }
 
-    @AfterMethod
+    @After
     protected void cleanUp() {
         driverManager.quitDriver();
     }

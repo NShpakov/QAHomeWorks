@@ -16,7 +16,7 @@ import ru.nshpakov.cucumber.steps.pages.PreparedCoursesPage;
 import java.util.Locale;
 import java.util.Optional;
 
-import static org.testng.AssertJUnit.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class MyStepdefs {
     private DriverManager driverManager;
