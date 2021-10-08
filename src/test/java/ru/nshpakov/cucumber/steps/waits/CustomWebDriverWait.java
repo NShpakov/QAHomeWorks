@@ -7,8 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 public class CustomWebDriverWait {
-    WebDriver driver;
-    long timeOutInSeconds;
+    private static WebDriver driver;
+    private static long timeOutInSeconds;
 
     public CustomWebDriverWait(WebDriver driver, long timeOutInSeconds) {
         this.driver = driver;
@@ -20,11 +20,11 @@ public class CustomWebDriverWait {
 //        webDriverWait.until(CustomWaitByConditions.waitLoadingElements(lstElemnts));
 //        return lstElemnts ;
 //    }
-    public Boolean waitLoadElements(List<WebElement> lstElemnts) {
+    public static Boolean waitLoadElements(List<WebElement> lstElemnts) {
         return new WebDriverWait(driver, timeOutInSeconds).until(CustomWaitByConditions.waitLoadingElements(lstElemnts));
     }
 
-    public WebElement waitLoadElement(WebElement element) {
+    public static WebElement waitLoadElement(WebElement element) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, timeOutInSeconds);
         webDriverWait.until(CustomWaitByConditions.waitLoadingElement(element));
         return element;

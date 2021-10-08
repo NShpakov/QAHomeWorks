@@ -12,8 +12,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class OtusMainPage extends BasePage {
-    private final static String POPULAR_COURSES_DATES_LOCATOR = ".//div[@class=\"subtitle-new\" and text()='Популярные курсы']/following::div[@class='lessons'][1]/a/div/div[@class='lessons__new-item-bottom']/div[@class='lessons__new-item-start']";
-    private final static String POPULAR_COURSES_NAMES_LOCATOR = "./ancestor::div[@class='lessons__new-item-container']/div[@class='lessons__new-item-title lessons__new-item-title_with-bg js-ellipse']";
+    private static final String POPULAR_COURSES_DATES_LOCATOR = ".//div[@class=\"subtitle-new\" and text()='Популярные курсы']/following::div[@class='lessons'][1]/a/div/div[@class='lessons__new-item-bottom']/div[@class='lessons__new-item-start']";
+    private static final String POPULAR_COURSES_NAMES_LOCATOR = "./ancestor::div[@class='lessons__new-item-container']/div[@class='lessons__new-item-title lessons__new-item-title_with-bg js-ellipse']";
     private static final String COURSE_BUTTON = "/html/body/div[1]/div/header[2]/div/div[2]/div[1]";
     private static final String COOKIE_BUTTON = ".//button[@class='js-cookie-accept cookies__button']";
     private static final String PREPARED_COURSES_BUTTON = "(.//a[@title='Подготовительные курсы'])[1]";

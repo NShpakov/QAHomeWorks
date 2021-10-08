@@ -83,12 +83,12 @@ public class MyStepdefs {
 
     @Then("Maximum price for a course is {int} rub")
     public void iFindTheMaxPrice(int expectedMaxPrice) {
-        assertEquals(Optional.of(expectedMaxPrice), preparedCoursesPage.getMaxPrice());
+        assertEquals(expectedMaxPrice, preparedCoursesPage.getMaxPrice());
     }
 
     @Then("Minimum price for a course is {int} rub")
     public void iFindTheMinPrice(int expectedMaxPrice) {
-        assertEquals(Optional.of(expectedMaxPrice), preparedCoursesPage.getMinPrice());
+        assertEquals(expectedMaxPrice, preparedCoursesPage.getMinPrice());
     }
 
     @Then("I display the name and price of the course in the console")
