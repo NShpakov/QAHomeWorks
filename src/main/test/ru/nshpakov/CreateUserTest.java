@@ -10,17 +10,19 @@ import ru.nshpakov.dto.response.create_user_resp.UserRespBody;
 import ru.nshpakov.services.user.CreateUserApi;
 
 import static org.hamcrest.Matchers.*;
+
 /*
-* Данный класс демонстрирует различные способы валидации
-* Сценарии:
-* - Запрос на создание пользователя со всеми параметрами. Валидация hamcrest
-* - Запрос на создание пользователя со всеми параметрами. Валидация схемы json
-* - Запрос на создание пользователя со всеми параметрами. Валидация ответа с помощью Assertions
-* - Запрос на создание пользователя с пустым телом (параметры = null). Валидация hamcrest
-*
-* */
+ * Данный класс демонстрирует различные способы валидации
+ * Сценарии:
+ * - Запрос на создание пользователя со всеми параметрами. Валидация hamcrest
+ * - Запрос на создание пользователя со всеми параметрами. Валидация схемы json
+ * - Запрос на создание пользователя со всеми параметрами. Валидация ответа с помощью Assertions
+ * - Запрос на создание пользователя с пустым телом (параметры = null). Валидация hamcrest
+ *
+ * */
 public class CreateUserTest {
-    private CreateUserApi createUserApi = new CreateUserApi();
+    private final CreateUserApi createUserApi = new CreateUserApi();
+    private final UserRespBody expectedRespBody = new UserRespBody(200, "unknown", "3");
 
     @Test()
     public void createUserReqWithAllParamsCheckRespByMatcher() {
@@ -80,9 +82,9 @@ public class CreateUserTest {
                 .build();
 
         Response response = createUserApi.getUser(user);
-        Assertions.assertEquals(getExpectedRespBody().getCode(), getActualRespBody(response).getCode(), "code");
-        Assertions.assertEquals(getExpectedRespBody().getType(), getActualRespBody(response).getType(), "type");
-        Assertions.assertEquals(getExpectedRespBody().getMessage(), getActualRespBody(response).getMessage(), "message");
+        Assertions.assertEquals(expectedRespBody.getCode(), getActualRespBody(response).getCode(), "code");
+        Assertions.assertEquals(expectedRespBody.getType(), getActualRespBody(response).getType(), "type");
+        Assertions.assertEquals(expectedRespBody.getMessage(), getActualRespBody(response).getMessage(), "message");
 
     }
 
@@ -100,10 +102,6 @@ public class CreateUserTest {
                 .body("code", equalTo(200))
                 .body("type", equalTo("unknown"))
                 .body("message", equalTo("0"));
-    }
-
-    private UserRespBody getExpectedRespBody() {
-        return new UserRespBody(200, "unknown", "3");
     }
 
     private UserRespBody getActualRespBody(Response response) {

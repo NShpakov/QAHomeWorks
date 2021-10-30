@@ -10,6 +10,7 @@ import ru.nshpakov.dto.response.get_user_resp.GetUserNotFound;
 import ru.nshpakov.dto.response.get_user_resp.GetUserResponseBody;
 import ru.nshpakov.services.user.CreateUserApi;
 import ru.nshpakov.services.user.GetUserApi;
+import ru.nshpakov.services.user.GetUserApiSingleton;
 
 import static org.hamcrest.Matchers.equalTo;
 
@@ -22,26 +23,25 @@ import static org.hamcrest.Matchers.equalTo;
  *
  * */
 public class GetUserByNameTest {
-    private CreateUserApi createUserApi = new CreateUserApi();
-    private String userName = "userNameValue";
-    private GetUserResponseBody expectedResponseBody = new GetUserResponseBody();
-    private GetUserNotFound getUserNotFound = new GetUserNotFound();
-    private Response actualResponse;
-    private User user;
+    private final CreateUserApi createUserApi = new CreateUserApi();
+    private final String userName = "userNameValue";
+    private final GetUserResponseBody expectedResponseBody = new GetUserResponseBody();
+    private final GetUserNotFound getUserNotFound = new GetUserNotFound();
+    private final Response actualResponse = GetUserApiSingleton.getInstance("userNameValue").getResponseBody();
+    private final Response actualResponseEror = new GetUserApi("zzz").getResponseBody();
+    private final User user = User.builder()
+            .id(3L)
+            .email("emailValue")
+            .firstName("firstNameValue")
+            .lastName("lastNameValue")
+            .password("passValue")
+            .phone("phoneValue")
+            .username(userName)
+            .userStatus(5L)
+            .build();
 
     @BeforeEach
     public void beforeActionCreateUser() {
-        user = User.builder()
-                .id(3L)
-                .email("emailValue")
-                .firstName("firstNameValue")
-                .lastName("lastNameValue")
-                .password("passValue")
-                .phone("phoneValue")
-                .username(userName)
-                .userStatus(5L)
-                .build();
-
         createUserApi.getUser(user)
                 .then()
                 .log()
@@ -54,9 +54,6 @@ public class GetUserByNameTest {
 
     @Test
     public void getUserByName() {
-        GetUserApi getUserApi = new GetUserApi("userNameValue");
-        actualResponse = getUserApi.getResponseBody();
-
         Assertions.assertEquals(actualResponse.statusCode(), 200, "http code");
         Assertions.assertEquals(getActualRespBody().getId(), getExpectedRespBody().getId(), "id");
         Assertions.assertEquals(getActualRespBody().getUsername(), getExpectedRespBody().getUsername(), "username");
@@ -70,18 +67,14 @@ public class GetUserByNameTest {
 
     @Test
     public void getUserNameNotFound() {
-        GetUserApi getUserApi = new GetUserApi("userErrName");
-        actualResponse = getUserApi.getResponseBody();
-
-        Assertions.assertEquals(actualResponse.statusCode(), 404, "http code");
-        Assertions.assertEquals(getActualRespBodyUserNotFound().getCode(), userNotFoundExpecctedRespBody().getCode(), "code");
-        Assertions.assertEquals(getActualRespBodyUserNotFound().getType(), userNotFoundExpecctedRespBody().getType(), "type");
-        Assertions.assertEquals(getActualRespBodyUserNotFound().getMessage(), userNotFoundExpecctedRespBody().getMessage(), "message");
-
+        Assertions.assertEquals(404, actualResponseEror.statusCode(), "http code");
+        Assertions.assertEquals(userNotFoundExpecctedRespBody().getCode(), getActualRespBodyUserNotFound().getCode(), "code");
+        Assertions.assertEquals(userNotFoundExpecctedRespBody().getType(), getActualRespBodyUserNotFound().getType(), "type");
+        Assertions.assertEquals(userNotFoundExpecctedRespBody().getMessage(), getActualRespBodyUserNotFound().getMessage(), "message");
     }
 
     private GetUserNotFound getActualRespBodyUserNotFound() {
-        return actualResponse.then().extract().body().as(GetUserNotFound.class);
+        return actualResponseEror.then().extract().body().as(GetUserNotFound.class);
     }
 
     private GetUserResponseBody getActualRespBody() {
