@@ -19,7 +19,7 @@ public class OtusMainPage extends BasePage {
     @FindBy(xpath = COURSE_BUTTON)
     WebElement coursesButton;
     private Map<String, Date> courseData = new HashMap<>();
-    private CustomWebDriverWait customWebDriverWait = new CustomWebDriverWait(webDriver, 5L);
+    private CustomWebDriverWait customWebDriverWait = new CustomWebDriverWait(webDriver, 15L);
 
     public OtusMainPage(WebDriver webDriver) {
         super(webDriver);
