@@ -33,8 +33,8 @@ public class FilterCoursesOnMainPageTest extends BaseTest {
     public void getLastStartDate() {
         Date lastDate = otusMainPage.getLastDate();
         String actualLastDate = lastDate.toString();
-        String expectedLastDate = "Thu Sep 30 00:00:00 MSK 2021";
-        String expectedCourseName = "Специализация Android-разработчик";
+        String expectedLastDate = "Mon Dec 27 00:00:00 MSK 2021";
+        String expectedCourseName = "JavaScript Developer. Professional";
         String actualCourseName = otusMainPage.findCourseNameByDate(lastDate);
         assertEquals(expectedLastDate, actualLastDate);
         assertEquals(expectedCourseName, actualCourseName);
@@ -45,8 +45,8 @@ public class FilterCoursesOnMainPageTest extends BaseTest {
         Date firstDate = otusMainPage.getFirstDate();
         String actualFirstDate = firstDate.toString();
         String actualCourseName = otusMainPage.findCourseNameByDate(firstDate);
-        String expectedFirstDate = "Tue Sep 28 00:00:00 MSK 2021";
-        String expectedCourseName = "JavaScript Developer. Professional";
+        String expectedFirstDate = "Mon Nov 29 00:00:00 MSK 2021";
+        String expectedCourseName = "Data Engineer";
         assertEquals(expectedFirstDate, actualFirstDate);
         assertEquals(expectedCourseName, actualCourseName);
     }
