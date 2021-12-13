@@ -21,7 +21,7 @@ public class ChromeDriverManager extends DriverManager {
         WebDriverManager.getInstance(CHROME).setup();
         if (ConfigReader.getStringKeyProperty("useSelenoidServerFlag").equals("Y")) {
             try {
-                return new RemoteWebDriver(URI.create("http://localhost:4444/wd/hub").toURL(), setChromeCapabilities());
+                return new RemoteWebDriver(URI.create("http://selenoid:4444/wd/hub").toURL(), setChromeCapabilities());
             } catch (MalformedURLException e) {
                 new RuntimeException(e);
             }
