@@ -44,10 +44,10 @@ public class ChromeDriverManager extends DriverManager {
 
     private DesiredCapabilities setChromeCapabilities() {
         DesiredCapabilities chromeCapabilities = new DesiredCapabilities();
-        chromeCapabilities.setBrowserName("chrome");
-        chromeCapabilities.setVersion("95.0");
+        chromeCapabilities.setCapability("browserName", "chrome");
+        chromeCapabilities.setCapability("browserVersion", "95.0");
         chromeCapabilities.setCapability("enableVNC", true);
-        chromeCapabilities.setCapability("enableVideo", false);
+        chromeCapabilities.setCapability("enableVideo", true);
         return chromeCapabilities;
 
     }
